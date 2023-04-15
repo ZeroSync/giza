@@ -10,7 +10,7 @@ use winter_air::{
     Air, AirContext, Assertion, AuxTraceRandElements, ProofOptions as WinterProofOptions,
     TraceInfo, TransitionConstraintDegree,
 };
-use winter_crypto::{hashers::Blake2s_256, ElementHasher};
+use winter_crypto::{hashers::Pedersen_256, ElementHasher};
 use winter_utils::{ByteReader, ByteWriter, Deserializable, DeserializationError, Serializable};
 
 // EXPORTS
@@ -297,7 +297,7 @@ impl Serializable for PublicInputs {
 
         data.push(self.num_steps.into());
 
-        let hash = Blake2s_256::hash_elements(&data);
+        let hash = Pedersen_256::hash_elements(&data);
         target.write(hash);
     }
 }
